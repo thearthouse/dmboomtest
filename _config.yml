@@ -1,0 +1,40 @@
+# Site settings
+midle_title: "Emerald"
+title: "A simple Jekyll blog"
+title_sep: " - "
+description: "A minimal blog template, build with Jekyll."
+gr_id: "7c1795d95bfabc566ed004b1dcc933f4"
+url: "http://localhost:4000"  # http://localhost:4000 / http://localhost:4000/blog
+author:
+  name: "Jacopo Rabolini"
+  email: "hello@jacoporabolini.com"
+  url: "http://www.jacoporabolini.com"
+encoding: "utf-8"
+disqus: "pofivido"
+# verification
+bing: "13"
+yandex: "213"
+google: "123"
+# Build settings
+baseurl: / # leave just a /
+markdown: kramdown
+source: .
+destination: ./_site
+permalink: /:year/:month/:slug.html
+paginate: 12
+paginate_path: /page:num/
+sitemap_limit: 1000.0
+# Default values
+defaults:
+  -
+    scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "post"
+
+# Plugins
+gems:
+  - jekyll-paginate
+# Custom variables
+version: "1.1.0"

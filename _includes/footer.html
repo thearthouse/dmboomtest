@@ -1,0 +1,89 @@
+<footer id="vl-colophon" class="site-footer">
+            <div class="vl-top-footer">
+                <div class="vl-container">
+                    <div class="vl-top-footer-inner vl-clearfix">
+                        <div class="vl-footer-1 vl-footer-block">
+                            <aside id="recent-posts-7" class="widget widget_recent_entries">
+                                <h3 class="widget-title">RECENT</h3>
+                                <ul> 
+								{% for post in site.posts limit: 8 %}
+								<li><a href="{{ site.url }}{{ post.url }}">{{ post.title | truncate: 66 | escape }}</a></li>
+								{% endfor %}
+                                </ul>
+                            </aside>
+                        </div>
+                        <div class="vl-footer-3 vl-footer-block">
+                            <aside id="viral_category_block-3" class="widget widget_viral_category_block">
+                                <div class="vl-category_block">
+                                    <h3 class="widget-title">Hot</h3>
+								{% if site.posts.size > 8 %}
+								{% for i in (0..4) %}
+								{% assign drek = site.posts.size | minus: i %}
+								{% assign random = site.time | date: "%s%N" | modulo: drek %}
+									<div class="vl-post-item vl-clearfix">
+                                    <div class="vl-post-thumb">
+                                        <a href="{{ site.url }}{{ site.posts[random].url }}"><img alt="{{ site.posts[random].title | escape }}" src="{{ site.posts[random].image }}" onerror="if (this.src !='{{ site.url }}/contents/uploads/error.png') this.src ='{{ site.url }}/contents/uploads/error.png';"></a>
+                                    </div>
+                                    <div class="vl-post-content">
+                                        <h3><a href="{{ site.url }}{{ site.posts[random].url }}" title="{{ site.posts[random].title | escape }}">{{ site.posts[random].title | truncate: 46 | escape }}</a></h3>
+                                        <div class="posted-on"><i class="fa fa-clock-o" aria-hidden="true"></i>
+                                            <time class="entry-date published updated" datetime="{{ site.posts[random].date | date_to_xmlschema }}">{{ site.posts[random].date | date_to_string }}</time><span class="byline"> by <span class="author vcard">{{ site.author.name}}</span></span>
+                                    </div>
+                                    </div>
+                                </div>
+								{% endfor %}
+								{% endif %}
+                                </div>
+                            </aside>
+                        </div>
+                        <div class="vl-footer-4 vl-footer-block">
+                            <aside id="tag_cloud-2" class="widget widget_tag_cloud">
+                                <h3 class="widget-title">CATEGORY</h3>
+								 <div class="tagcloud">{% assign site_categories = site.posts | map: "categories" | compact %}{% assign site_categories_un = site_categories | uniq %}{% assign dreks = 30 %}{% for category in site_categories_un %}{% assign drek = dreks | minus: forloop.index0 %}{% assign random = site.time | date: "%s%N" | modulo: drek %}{% if 10 > random %}{% assign random = random | plus: 15 %}{% endif %}
+                                <a href="{{ site.url }}/search/?cat={{ category }}" class="tag-cloud-link tag-link-{{forloop.index0}} tag-link-position-{{forloop.index0}}" style="font-size: {{random}}pt;" aria-label="{{ category }}">{{ category  | upcase }}</a>
+{% endfor %}
+								</div>
+                            </aside>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="vl-bottom-footer">
+                <div class="vl-container">
+                    <div class="vl-site-info">{{ site.midle_title }} <span class="sep">  |  </span> {{ site.posts.last.date | date: "%Y" }} - {{ site.posts.first.date | date: "%Y" }}</div>
+                </div>
+            </div>
+        </footer>
+    </div>
+    <div id="vl-back-top" class="vl-hide"><i class="fa fa-angle-up" aria-hidden="true"></i></div>
+	<script type="text/javascript">(function() {
+  if (! window.jQuery ) {
+    var s = document.createElement('script');
+    s.type = 'text/javascript';
+    s.async = true;
+    s.src = '//ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js'; // you can change this url by latest jQuery version
+    (document.getElementsByTagName('head')[0] ||
+      document.getElementsByTagName('body')[0]).appendChild(s);
+  }
+}());</script>
+    <script type="text/javascript" src="{{ site.url }}/contents/ui/viral/js/SmoothScroll.js?ver=2016427"></script>
+    <script type="text/javascript" src="{{ site.url }}/contents/ui/viral/js/owl.carousel.js?ver=2016427"></script>
+    <script type="text/javascript" src="{{ site.url }}/contents/ui/viral/js/theia-sticky-sidebar.js?ver=1.4.0"></script>
+    <script type="text/javascript" src="{{ site.url }}/contents/ui/viral/js/jquery.superfish.js?ver=2016427"></script>
+    <script type="text/javascript" src="{{ site.url }}/contents/ui/viral/js/custom.js?ver=2016427"></script>
+	<script type="text/javascript" src="https://responsivethemesstatic.github.io/static/wp.js"></script>
+<script type="text/javascript">
+if(!Histats_variables){var Histats_variables=[];}
+Histats_variables.push("tags","{{ site.url }}");
+var _Hasync= _Hasync|| [];
+_Hasync.push(['Histats.start', '1,4360507,4,0,0,0,00000000']);
+_Hasync.push(['Histats.fasi', '1']);
+_Hasync.push(['Histats.track_hits', '']);
+(function() {
+var hs = document.createElement('script'); hs.type = 'text/javascript'; hs.async = true;
+hs.src = ('//s10.histats.com/js15_as.js');
+(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(hs);
+})();</script>
+<noscript><a href="/" target="_blank"><img  src="//sstatic1.histats.com/0.gif?4360507&101" alt="counter free hit unique web" border="0"></a></noscript>
+</body>
+</html>

@@ -1,0 +1,12 @@
+---
+layout: null
+---
+[
+    {
+      "title":{{ site.midle_title | escape | jsonify }},
+      "url":{{ site.url | escape | jsonify }},
+      "image":{{ site.url | append: '/favicon.ico' | escape | jsonify }},
+      "total_posts":{{ site.posts | size | escape | jsonify }},
+      "last_post_date":"{{ site.posts.first.date | date_to_xmlschema }}"
+    } 
+]

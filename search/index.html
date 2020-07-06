@@ -1,0 +1,97 @@
+---
+layout: err
+title: Search
+permalink: /search/index.html
+---
+
+<div class="vl-middle-block style2">
+						<h2 class="vl-block-title"><span id="srch"></span></h2>
+						<div class="vl-grid-blocks" id="bleck"></div>
+                        </div>
+<script type="text/javascript">
+var global_data = '';
+function getUrlParameter(name) {
+    name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+    var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+    var results = regex.exec(location.search);
+    return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+};
+var getJSON = function(url, callback) {
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', url, true);
+    xhr.responseType = 'json';
+    xhr.onload = function() {
+      var status = xhr.status;
+      if (status === 200) {
+        callback(null, xhr.response);
+      } else {
+        callback(status, xhr.response);
+      }
+    };
+    xhr.send();
+};
+var category = getUrlParameter('cat');
+var search = getUrlParameter('s');
+if(category !== "" || search !== ""){
+	getJSON('data.json',
+	function(err, data) {
+	  if (err == null) {
+			global_data = data;
+			next();
+		} else {
+			document.getElementById("srch").innerHTML = "Nothing found.";
+			document.getElementById("bleck").innerHTML = "<p>It looks like nothing was found at this location.</p>";
+		}
+	});
+}
+function next(){
+//console.log(global_data);
+var trx = 0;
+for (var i = 0; i < global_data.length; i++) {
+	if(category !== "" && category.toUpperCase() == global_data[i]['categories'].toUpperCase()){
+		document.getElementById("srch").innerHTML = category;
+		if(trx == 0){document.getElementById("bleck").innerHTML = ''; }
+		document.getElementById("bleck").innerHTML += ' <div class="vl-grid-block">\
+                                    <div class="vl-grid-block-inner">\
+                                        <div class="vl-post-thumb">\
+                                            <a href="'+global_data[i]['url']+'"><img alt="'+global_data[i]['title']+'" src="'+global_data[i]['image']+'">\
+                                                <div class="vl-post-content">\
+                                                    <h3>'+global_data[i]['title']+'</h3>\
+                                                    <div class="posted-on"><i class="fa fa-clock-o" aria-hidden="true"></i>\
+                                                        <time class="entry-date published updated" datetime="'+global_data[i]['date']+'">'+global_data[i]['date']+'</time><span class="byline"> by <span class="author vcard">'+global_data[i]['author']+'</span></span>\
+                                                    </div>\
+                                                </div>\
+                                            </a>\
+                                        </div>\
+                                    </div>\
+                                </div>';
+		trx += 1;
+	} else if(search !== "" && global_data[i]['title'].toUpperCase().indexOf(search.toUpperCase()) > -1){
+		document.getElementById("srch").innerHTML = search;
+		if(trx == 0){document.getElementById("bleck").innerHTML = ''; }
+		document.getElementById("bleck").innerHTML += ' <div class="vl-grid-block">\
+                                    <div class="vl-grid-block-inner">\
+                                        <div class="vl-post-thumb">\
+                                            <a href="'+global_data[i]['url']+'"><img alt="'+global_data[i]['title']+'" src="'+global_data[i]['image']+'">\
+                                                <div class="vl-post-content">\
+                                                    <h3>'+global_data[i]['title']+'</h3>\
+                                                    <div class="posted-on"><i class="fa fa-clock-o" aria-hidden="true"></i>\
+                                                        <time class="entry-date published updated" datetime="'+global_data[i]['date']+'">'+global_data[i]['date']+'</time><span class="byline"> by <span class="author vcard">'+global_data[i]['author']+'</span></span>\
+                                                    </div>\
+                                                </div>\
+                                            </a>\
+                                        </div>\
+                                    </div>\
+                                </div>';
+		trx += 1;
+	} 
+	if(trx > 11){
+		break;
+	}
+ }
+ if(trx == 0){
+		document.getElementById("srch").innerHTML = "Nothing found.";
+		document.getElementById("bleck").innerHTML = "<p>It looks like nothing was found at this location.</p>";
+	}
+}
+</script>
