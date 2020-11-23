@@ -1,0 +1,42 @@
+    {% if page.date %}
+      {% assign page-date = page.date %}
+    {% else %}
+      {% assign page-date = site.posts.first.date %}
+    {% endif %}
+<div id="secondary" class="widget-area">
+                        <aside id="custom_html-4" class="widget_text widget widget_custom_html">
+                            <div class="textwidget custom-html-widget">
+                                <div id="sidebar_300"></div>
+                            </div>
+                        </aside>
+                        <aside id="custom_html-44654" class="widget_text widget widget_custom_html">
+							<div class="search-container">
+								<form action="/search/" autocomplete="off">
+									<input type="text" placeholder="Search.." name="s">
+									<button type="submit"><i class="fa fa-search"></i></button>
+								</form>
+							</div>
+                        </aside>
+                        <aside id="viral_category_block-5" class="widget widget_viral_category_block">
+                            <div class="vl-category_block">
+                                <h3 class="widget-title">popular</h3>
+							{% if site.posts.size > 12 %}
+							{% for i in (0..9) %}
+							{% assign drek = site.posts.size | minus: i %}
+							{% assign random = page-date | date: "%s%N" | modulo: drek %}
+                                <div class="vl-post-item vl-clearfix">
+                                    <div class="vl-post-thumb">
+                                        <a href="{{ site.url }}{{ site.posts[random].url }}"><img alt="{{ site.posts[random].title | escape }}" src="{{ site.posts[random].image }}" onerror="if (this.src !='{{ site.url }}/contents/uploads/error.png') this.src ='{{ site.url }}/contents/uploads/error.png';"></a>
+                                    </div>
+                                    <div class="vl-post-content">
+                                        <h3><a href="{{ site.url }}{{ site.posts[random].url }}" title="{{ site.posts[random].title | escape }}">{{ site.posts[random].title | truncate: 46 | escape }}</a></h3>
+                                        <div class="posted-on"><i class="fa fa-clock-o" aria-hidden="true"></i>
+                                            <time class="entry-date published updated" datetime="{{ site.posts[random].date | date_to_xmlschema }}">{{ site.posts[random].date | date_to_string }}</time><span class="byline"> by <span class="author vcard">{{ site.author.name}}</span></span>
+                                        </div>
+                                    </div>
+                                </div>
+								{% endfor %}
+								{% endif %}
+                            </div>
+                        </aside>
+                    </div>

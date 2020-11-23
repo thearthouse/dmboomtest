@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html dir="ltr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="msvalidate.01" content="{{ site.bing }}">
+    <meta name="yandex-verification" content="{{ site.yandex }}">
+    <meta name="google-site-verification" content="{{ site.google }}">
+    <title>{{ page.title | escape }} - {{ site.midle_title | escape }}</title>
+    <meta name="robots" content="noindex">
+    <meta property="og:title" content="{{ page.title | escape }} - {{ site.midle_title | escape }}">
+    <meta property="og:site_name" content="{{ site.midle_title | escape }}">
+	<link rel="alternate" type="application/atom+xml" title="{{ site.midle_title | escape }}" href="{{site.url}}/feed.xml">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{{ page.title | escape }} - {{ site.midle_title | escape }}">
+    <link rel="dns-prefetch" href="//fonts.googleapis.com">
+    <link rel="dns-prefetch" href="//s.w.org">
+    <link rel="stylesheet" id="wp-block-library-css" href="{{site.url}}/inc/css/dist/block-library/style.min.css?ver=5.3.2" type="text/css" media="all">
+    <link rel="stylesheet" id="viral-fonts-css" href="//fonts.googleapis.com/css?family=Roboto+Condensed%3A300italic%2C400italic%2C700italic%2C400%2C300%2C700%7CRoboto%3A300%2C400%2C400i%2C500%2C700&subset=latin%2Clatin-ext" type="text/css" media="all">
+    <link rel="stylesheet" id="font-awesome-css" href="{{site.url}}/contents/ui/viral/css/font-awesome.css?ver=4.6.2" type="text/css" media="all">
+    <link rel="stylesheet" id="owl-carousel-css" href="{{site.url}}/contents/ui/viral/css/owl.carousel.css?ver=4.6.2" type="text/css" media="all">
+    <link rel="stylesheet" id="viral-style-css" href="{{site.url}}/contents/ui/viral/style.css?ver=5.3.2" type="text/css" media="all">
+    <script type="text/javascript" src="{{site.url}}/inc/js/jquery/jquery.js?ver=1.12.4-wp"></script>
+    <script type="text/javascript" src="{{site.url}}/inc/js/jquery/jquery-migrate.min.js?ver=1.4.1"></script>
+    <style type="text/css" id="custom-background-css">
+        body.custom-background {
+            background-color: #d1d1d1;
+        }
+    </style>
+    <link rel="icon" href="{{site.url}}/contents/uploads/icon-32x32.png" sizes="32x32">
+    <link rel="icon" href="{{site.url}}/contents/uploads/icon-192x192.png" sizes="192x192">
+    <link rel="apple-touch-icon-precomposed" href="{{site.url}}/contents/uploads/icon-180x180.png">
+    <meta name="msapplication-TileImage" content="{{site.url}}/contents/uploads/icon-270x270.png">
+</head>
+
+<body class="error404 custom-background wp-custom-logo vl-boxed">
+    <div id="vl-page">
+{% include header.html %} 
+        <div id="vl-content" class="vl-site-content">
+            <div class="vl-container">
+                <div id="primary" class="content-area">
+{{content}}
+                </div>
+{% include sidebar.html %}
+            </div>
+        </div>
+{% include footer.html %}    

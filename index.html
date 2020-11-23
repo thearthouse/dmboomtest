@@ -1,0 +1,69 @@
+---
+layout: default
+---
+<div id="vl-content" class="vl-site-content">
+            <div class="vl-container">
+                <div id="vl-middle-section" class="vl-clearfix">
+                    <div id="primary">
+                        <div class="vl-middle-block style2">
+						<h2 class="vl-block-title"><span>RECENT POSTS</span></h2>
+						<div class="vl-grid-blocks">
+							{% for post in paginator.posts %}
+                                   <div class="vl-grid-block">
+                                    <div class="vl-grid-block-inner">
+                                        <div class="vl-post-thumb">
+                                            <a href="{{site.url}}{{post.url}}"><img alt="{{ post.title | escape }}" src="{{ post.image}}">
+                                                <div class="vl-post-content">
+                                                    <h3>{{ post.title | strip_html | truncate: 60 | escape }}</h3>
+                                                    <div class="posted-on"><i class="fa fa-clock-o" aria-hidden="true"></i>
+                                                        <time class="entry-date published updated" datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date_to_string }}</time><span class="byline"> by <span class="author vcard">{{ site.author.name}}</span></span>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+							{% endfor %}
+                            </div>
+                        </div>
+						
+                        <nav class="navigation pagination" role="navigation" aria-label="Posts">
+						<h2 class="screen-reader-text">Posts navigation</h2>
+						
+						
+								  <!-- Pagination links -->
+        {% if paginator.total_pages > 1 %}
+        <div class="nav-links">
+          {% if paginator.previous_page == 1 %}
+            <a href="{{site.url}}{{ '/' | prepend: site.baseurl | replace: '//', '/' }}" class="page-item">Previous</a>
+          {% elsif paginator.previous_page%}
+            <a class="prev page-numbers" href="{{site.url}}{{ paginator.previous_page_path | prepend: site.baseurl | replace: '//', '/' }}">Previous</a>
+          {% else %}
+            
+          {% endif %}
+        
+          {% for page in (paginator.page..paginator.total_pages) limit: 5 %}
+            {% if page == paginator.page %}
+			  <span aria-current="page" class="page-numbers current">{{ page }}</span>
+            {% elsif page == 1 %}
+              <a href="{{site.url}}{{ '/' | prepend: site.baseurl | replace: '//', '/' }}" class="page-item">{{ page }}</a>
+            {% else %}
+              <a href="{{site.url}}{{ site.paginate_path | prepend: site.baseurl | replace: '//', '/' | replace: ':num', page }}" class="page-item">{{ page }}</a>
+            {% endif %}
+          {% endfor %}
+        
+          {% if paginator.next_page %}
+            <a class="next page-numbers" href="{{site.url}}{{ paginator.next_page_path | prepend: site.baseurl | replace: '//', '/' }}">Next</a>
+		  {% else %}
+            
+          {% endif %}
+        </div>
+        {% endif %}
+						</nav>
+                        
+                    </div>
+{% include sidebar.html %}
+                </div>
+                
+            </div>
+        </div>

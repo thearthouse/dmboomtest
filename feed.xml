@@ -1,0 +1,34 @@
+---
+layout: null
+---
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+<link href="{{ site.url }}/feed.xml" rel="self" type="application/atom+xml" />
+<link href="{{ site.url }}/" rel="alternate" type="text/html" />
+<updated>{{ site.time | date_to_xmlschema }}</updated>
+<id>{{ site.url }}/feed.xml</id>{% assign site_title = site.midle_title | smartify | xml_escape %}
+<title type="html">{{ site_title | xml_escape }}</title>
+<subtitle>{{ site.description | xml_escape }}</subtitle>
+<author>
+ <name>{{ site.author.name | xml_escape }}</name>
+ <uri>{{ site.author.url | xml_escape }}</uri>
+ <email>{{ site.author.email | xml_escape }}</email>
+</author>{% for post in site.posts limit: 25 %}
+ <entry>
+  <title type="html">{{ post.title | smartify | strip_html | normalize_whitespace | xml_escape }}</title>
+  <link href="{{ site.url | append: post.url  | xml_escape }}" rel="alternate" type="text/html" title="{{ post.title | smartify | strip_html | normalize_whitespace | xml_escape }}" />
+  <published>{{ post.date | date_to_xmlschema }}</published>
+  <updated>{{ post.last_modified_at | default: post.date | date_to_xmlschema }}</updated>
+  <id>{{ post.id | absolute_url | xml_escape }}</id>
+  <content type="html" xml:base="{{ site.url | append: post.url  | xml_escape }}">{{ post.content | strip | xml_escape }}</content>
+  <author>
+   <name>{{ site.author.name | xml_escape }}</name>
+   <uri>{{ site.author.url | xml_escape }}</uri>
+   <email>{{ site.author.email | xml_escape }}</email>
+  </author>
+  <category term="{{ post.categories[0] | xml_escape }}" />
+  <summary type="html">{{ post.excerpt | strip_html | normalize_whitespace | xml_escape }}</summary>
+  <media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="{{ post.image | xml_escape }}" />
+  <media:content medium="image" url="{{ post.image | xml_escape }}" xmlns:media="http://search.yahoo.com/mrss/" />
+ </entry>{% endfor %}
+ </feed>

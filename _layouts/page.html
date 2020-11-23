@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html dir="ltr">{% capture video_description_text %}{{ page.description | replace: '(midle_title)', site.midle_title }}{% endcapture %}
+	<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="msvalidate.01" content="{{ site.bing }}">
+    <meta name="yandex-verification" content="{{ site.yandex }}">
+    <meta name="google-site-verification" content="{{ site.google }}">
+    <title>{{ page.title | escape }}</title>
+    <meta name="description" content="{{video_description_text | truncate: 150 | escape }}">
+    <meta content='noodp' name='robots'>
+    <meta content='index, follow' name='robots'>
+    <link rel="canonical" href="{{site.url}}{{page.url}}">
+    <meta property="og:title" content="{{ page.title | escape }}">
+    <meta property="og:description" content="{{video_description_text | truncate: 150 | escape }}">
+    <meta property="og:url" content="{{site.url}}{{page.url}}">
+    <meta property="article:published_time" content="{{ site.posts.last.date | date_to_xmlschema }}">
+	<link rel="alternate" type="application/atom+xml" title="{{ site.midle_title | escape }}" href="{{site.url}}/feed.xml">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:description" content="{{video_description_text | truncate: 150 | escape }}">
+    <meta name="twitter:title" content="{{ page.title | escape }}">
+    <script type="application/ld+json">{ "@context": "https://schema.org", "@graph": [ { "@type": [ "Person", "Organization" ], "@id": "{{site.url}}/#/schema/person/{{site.gr_id}}", "name": {{ site.author.name | jsonify }}, "image": { "@type": "ImageObject", "@id": "{{site.url}}/#personlogo", "url": "http://1.gravatar.com/avatar/{{site.gr_id}}?s=96&r=g", "caption": {{ site.author.name | jsonify }} }, "logo": { "@id": "{{site.url}}/#personlogo" }, "sameAs": [] }, { "@type": "WebSite", "@id": "{{site.url}}/#website", "url": "{{site.url}}/", "name": {{ site.midle_title | jsonify }}, "description": {{ site.description | jsonify }}, "publisher": { "@id": "{{site.url}}/#/schema/person/{{site.gr_id}}" }, "potentialAction": { "@type": "SearchAction", "target": "{{site.url}}/search/?s={search_term_string}", "query-input": "required name=search_term_string" } }, { "@type": "ImageObject", "@id": "{{site.url}}{{page.url}}#primaryimage", "url": "{{ page.image }}" }, { "@type": "WebPage", "@id": "{{site.url}}{{page.url}}#webpage", "url": "{{site.url}}{{page.url}}", "name": {{ page.title | escape | jsonify }}, "isPartOf": { "@id": "{{site.url}}/#website" },  "datePublished": "{{ site.posts.last.date | date_to_xmlschema }}", "dateModified": "{{ site.posts.last.date | date_to_xmlschema }}", "description": {{video_description_text | truncate: 150 | escape | jsonify }} } ] }</script>
+    <link rel="dns-prefetch" href="//fonts.googleapis.com">
+    <link rel="dns-prefetch" href="//s.w.org">
+    <link rel="stylesheet" id="wp-block-library-css" href="{{site.url}}/inc/css/dist/block-library/style.min.css?ver=5.3.2" type="text/css" media="all">
+    <link rel="stylesheet" id="viral-fonts-css" href="//fonts.googleapis.com/css?family=Roboto+Condensed%3A300italic%2C400italic%2C700italic%2C400%2C300%2C700%7CRoboto%3A300%2C400%2C400i%2C500%2C700&subset=latin%2Clatin-ext" type="text/css" media="all">
+    <link rel="stylesheet" id="font-awesome-css" href="{{site.url}}/contents/ui/viral/css/font-awesome.css?ver=4.6.2" type="text/css" media="all">
+    <link rel="stylesheet" id="owl-carousel-css" href="{{site.url}}/contents/ui/viral/css/owl.carousel.css?ver=4.6.2" type="text/css" media="all">
+    <link rel="stylesheet" id="viral-style-css" href="{{site.url}}/contents/ui/viral/style.css?ver=5.3.2" type="text/css" media="all">
+    <script type="text/javascript" src="{{site.url}}/inc/js/jquery/jquery.js?ver=1.12.4-wp"></script>
+    <script type="text/javascript" src="{{site.url}}/inc/js/jquery/jquery-migrate.min.js?ver=1.4.1"></script>
+    
+    <style type="text/css" id="custom-background-css">
+        body.custom-background {
+            background-color: #d1d1d1;
+        }
+    </style>
+    <link rel="icon" href="{{site.url}}/contents/uploads/icon-32x32.png" sizes="32x32">
+    <link rel="icon" href="{{site.url}}/contents/uploads/icon-192x192.png" sizes="192x192">
+    <link rel="apple-touch-icon-precomposed" href="{{site.url}}/contents/uploads/icon-180x180.png">
+    <meta name="msapplication-TileImage" content="{{site.url}}/contents/uploads/icon-270x270.png">
+	<style>
+body {font-family: Arial, Helvetica, sans-serif;}
+* {box-sizing: border-box;}
+
+input[type=text], select, textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin-top: 6px;
+  margin-bottom: 16px;
+  resize: vertical;
+}
+
+input[type=submit] {
+  background-color: #4CAF50;
+  color: white;
+  padding: 2px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+input[type=submit]:hover {
+  background-color: #45a049;
+}
+
+.container {
+  border-radius: 5px;
+  background-color: #ffff;
+  padding: 20px;
+  width: 90%;
+}
+</style>
+</head>
+<body class="page-template-default page page-id-{{page.id}} single-format-standard custom-background wp-custom-logo vl-boxed">
+    <div id="vl-page">
+{% include header.html %}
+        <div id="vl-content" class="vl-site-content">
+            <div class="vl-container">
+                <div id="primary" class="content-area">
+                    <header class="vl-main-header">
+                        <h1>{{page.title | escape }}</h1></header>
+                    <article id="post-{{page.id}}" class="vl-article-content post-{{page.id}} page type-page status-publish hentry">
+                     <div class="entry-content">
+					 {{ content }}
+						</div>
+                    </article>
+
+                </div>
+{% include sidebar.html %}
+            </div>
+        </div>
+{% include footer.html %}

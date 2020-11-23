@@ -1,0 +1,6 @@
+change:
+1. All from v2 +
+2. json+ld lang removed +
+3. remove post title end dzboom +
+4. added firs_post_date to stats.json +
+5. stats.json to 30000 +
